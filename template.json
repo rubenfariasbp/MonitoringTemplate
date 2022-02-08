@@ -1,0 +1,47 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "metricAlerts_AlertaVM_name": {
+            "defaultValue": "AlertaVM",
+            "type": "String"
+        },
+        "virtualMachines_TestVM_externalid": {
+            "defaultValue": "/subscriptions/0bbb0ca8-b1b3-4249-a640-cf634c9ea49a/resourceGroups/Test_RF/providers/Microsoft.Compute/virtualMachines/TestVM",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[parameters('metricAlerts_AlertaVM_name')]",
+            "location": "global",
+            "properties": {
+                "description": "This is a metric alert",
+                "severity": 3,
+                "enabled": true,
+                "scopes": [
+                    "[parameters('virtualMachines_TestVM_externalid')]"
+                ],
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "threshold": 85,
+                            "name": "1st criterion",
+                            "metricName": "Percentage CPU",
+                            "operator": "GreaterThan",
+                            "timeAggregation": "Maximum",
+                            "criterionType": "StaticThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria"
+                },
+                "actions": []
+            }
+        }
+    ]
+}
