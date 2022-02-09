@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "metricAlerts_AlertaVM_name": {
-            "defaultValue": "AlertaVM",
+            "defaultValue": "MonitorVM",
             "type": "String"
         },
         "virtualMachines_TestVM_externalid": {
