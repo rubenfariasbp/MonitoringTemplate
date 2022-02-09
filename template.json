@@ -9,6 +9,10 @@
         "virtualMachines_TestVM_externalid": {
             "defaultValue": "/subscriptions/0bbb0ca8-b1b3-4249-a640-cf634c9ea49a/resourceGroups/Test_RF/providers/Microsoft.Compute/virtualMachines/TestVM",
             "type": "String"
+        },
+        "actiongroups_alerta_externalid": {
+            "defaultValue": "/subscriptions/0bbb0ca8-b1b3-4249-a640-cf634c9ea49a/resourceGroups/test_rf/providers/microsoft.insights/actiongroups/alerta",
+            "type": "String"
         }
     },
     "variables": {},
@@ -40,7 +44,13 @@
                     ],
                     "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria"
                 },
-                "actions": []
+                 "targetResourceType": "Microsoft.Compute/virtualMachines",
+                "actions": [
+                    {
+                        "actionGroupId": "[parameters('actiongroups_alerta_externalid')]",
+                        "webHookProperties": {}
+                    }
+                ]
             }
         }
     ]
