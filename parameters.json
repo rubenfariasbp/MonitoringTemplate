@@ -7,6 +7,9 @@
         },
         "virtualMachines_TestVM_externalid": {
             "value": null
+        },
+        "actiongroups_alerta_externalid": {
+            "value": null
         }
     }
 }
