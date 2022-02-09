@@ -19,7 +19,7 @@
             "name": "[parameters('metricAlerts_AlertaVM_name')]",
             "location": "global",
             "properties": {
-                "description": "This is a metric alert",
+                "description": "Alerta de metrica",
                 "severity": 2,
                 "enabled": true,
                 "scopes": [
